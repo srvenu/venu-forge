@@ -6,38 +6,53 @@ import { Play, Youtube, Users, Clock } from "lucide-react";
 
 const YouTubeSection = () => {
   const channelStats = [
-    { icon: Users, label: "Subscribers", value: "5K+" },
-    { icon: Play, label: "Videos", value: "50+" },
-    { icon: Clock, label: "Watch Time", value: "10K+ hours" },
+    { icon: Users, label: "Subscribers", value: "300" },
+    { icon: Play, label: "Videos", value: "5+" },
+    { icon: Clock, label: "Watch Time", value: "1K+ hours" },
   ];
 
   const featuredVideos = [
     {
-      title: "Complete Machine Learning Tutorial for Beginners",
-      description: "Learn ML from scratch with Python, covering algorithms, data preprocessing, and model evaluation.",
-      duration: "45:30",
-      views: "12K",
-      thumbnail: "ML",
+      title:
+        "Transform YouTube Videos into Smart, Topic-Based Notes (with Images & PDF Generator)",
+      description:
+        "Discover how to convert any YouTube tutorial into structured, topic-based notes with images — and export everything as a polished PDF for easy review.",
+      duration: "1:16:22",
+      views: "60+",
+      videoId: "9ok0tdN1Zcw",
+      thumbnail: "https://img.youtube.com/vi/9ok0tdN1Zcw/hqdefault.jpg",
+      link: "https://youtu.be/9ok0tdN1Zcw",
     },
     {
-      title: "Building AI Applications with React & TensorFlow.js",
-      description: "Create intelligent web applications using modern frameworks and machine learning in the browser.",
+      title:
+        "Building AI Web Apps with React & TensorFlow.js (Beginner to Pro)",
+      description:
+        "Step through the process of creating intelligent web applications using React and TensorFlow.js — from setup to deployment, leveraging machine learning directly in the browser.",
       duration: "38:45",
       views: "8.5K",
-      thumbnail: "AI",
+      videoId: "PdzKDeX59q8",
+      thumbnail: "https://img.youtube.com/vi/PdzKDeX59q8/hqdefault.jpg",
+      link: "https://youtu.be/PdzKDeX59q8",
     },
     {
-      title: "AWS Cloud Computing Masterclass",
-      description: "Master cloud deployment, scaling, and management with hands-on AWS projects.",
+      title: "AWS Cloud Deployment Masterclass: Scale & Manage Full-Stack Apps",
+      description:
+        "Master the complete workflow for deploying and scaling full-stack applications on AWS — covering EC2, S3, and CloudFront with hands-on best practices.",
       duration: "52:15",
       views: "15K",
-      thumbnail: "AWS",
+      videoId: "n8qMg9XIPvA",
+      thumbnail: "https://img.youtube.com/vi/n8qMg9XIPvA/hqdefault.jpg",
+      link: "https://youtu.be/n8qMg9XIPvA",
     },
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background to-background/50" id="youtube">
+    <section
+      className="py-20 px-4 bg-gradient-to-b from-background to-background/50"
+      id="youtube"
+    >
       <div className="container mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,10 +60,13 @@ const YouTubeSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Content & Community</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Content & Community
+          </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Join the CodeAlchemists community where I share coding tutorials, AI insights, and software development best practices
+            Join the CodeAlchemists community where I share coding tutorials, AI
+            insights, and software development best practices.
           </p>
         </motion.div>
 
@@ -68,14 +86,17 @@ const YouTubeSection = () => {
                     <Youtube className="h-12 w-12" />
                   </div>
                 </div>
-                
+
                 <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2 text-primary">CodeAlchemists</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-primary">
+                    CodeAlchemists
+                  </h3>
                   <p className="text-muted-foreground mb-4">
-                    Transforming complex programming concepts into simple, actionable tutorials. 
-                    From AI and machine learning to web development and cloud computing.
+                    Transforming complex programming concepts into simple,
+                    actionable tutorials — from AI and machine learning to web
+                    development and cloud computing.
                   </p>
-                  
+
                   <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-6">
                     {channelStats.map((stat, index) => (
                       <motion.div
@@ -89,7 +110,9 @@ const YouTubeSection = () => {
                         <stat.icon className="h-5 w-5 text-primary" />
                         <div>
                           <p className="font-semibold">{stat.value}</p>
-                          <p className="text-xs text-muted-foreground">{stat.label}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {stat.label}
+                          </p>
                         </div>
                       </motion.div>
                     ))}
@@ -97,14 +120,14 @@ const YouTubeSection = () => {
                 </div>
 
                 <div className="flex-shrink-0">
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="bg-red-600 hover:bg-red-700 text-white"
                     asChild
                   >
-                    <a 
-                      href="https://www.youtube.com/@CodeAlchemists" 
-                      target="_blank" 
+                    <a
+                      href="https://www.youtube.com/@CodeAlchemists"
+                      target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Youtube className="mr-2 h-5 w-5" />
@@ -124,7 +147,9 @@ const YouTubeSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-semibold text-center mb-8 text-primary">Featured Videos</h3>
+          <h3 className="text-2xl font-semibold text-center mb-8 text-primary">
+            Featured Videos
+          </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredVideos.map((video, index) => (
               <motion.div
@@ -135,22 +160,31 @@ const YouTubeSection = () => {
                 viewport={{ once: true }}
               >
                 <Card className="glass-card hover-glow group overflow-hidden">
-                  {/* Video Thumbnail */}
-                  <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                    <div className="text-primary/60 text-4xl font-bold">
-                      {video.thumbnail}
-                    </div>
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <a
+                    href={video.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative aspect-video block group"
+                  >
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
                         <Play className="h-8 w-8 text-white ml-1" />
                       </div>
                     </div>
                     <div className="absolute bottom-2 right-2">
-                      <Badge variant="secondary" className="bg-black/80 text-white">
+                      <Badge
+                        variant="secondary"
+                        className="bg-black/80 text-white"
+                      >
                         {video.duration}
                       </Badge>
                     </div>
-                  </div>
+                  </a>
 
                   <CardContent className="p-6">
                     <h4 className="font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
@@ -172,6 +206,7 @@ const YouTubeSection = () => {
           </div>
         </motion.div>
 
+        {/* View All */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -180,9 +215,9 @@ const YouTubeSection = () => {
           className="text-center mt-12"
         >
           <Button variant="outline" size="lg" asChild>
-            <a 
-              href="https://www.youtube.com/@CodeAlchemists" 
-              target="_blank" 
+            <a
+              href="https://www.youtube.com/@CodeAlchemists"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Youtube className="h-5 w-5 mr-2" />

@@ -3,15 +3,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Youtube, 
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Youtube,
   Twitter,
   Send,
   MapPin,
-  Phone
+  Phone,
 } from "lucide-react";
 
 const ContactSection = () => {
@@ -46,8 +46,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@venuraj.dev",
-      link: "mailto:contact@venuraj.dev",
+      value: "srvenugopal2002@gmail.com",
+      link: "mailto:srvenugopal2002@gmail.com",
     },
     {
       icon: MapPin,
@@ -58,7 +58,10 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 bg-gradient-to-b from-background/50 to-background">
+    <section
+      id="contact"
+      className="py-20 px-4 bg-gradient-to-b from-background/50 to-background"
+    >
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -70,8 +73,8 @@ const ContactSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you. 
-            Let's build something amazing together!
+            Have a project in mind or want to collaborate? I'd love to hear from
+            you. Let's build something amazing together!
           </p>
         </motion.div>
 
@@ -85,45 +88,55 @@ const ContactSection = () => {
           >
             <Card className="glass-card hover-glow">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">Send a Message</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">
+                  Send a Message
+                </h3>
                 <form className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Name</label>
-                      <Input 
+                      <label className="text-sm font-medium mb-2 block">
+                        Name
+                      </label>
+                      <Input
                         placeholder="Your name"
                         className="bg-background/50 border-border"
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Email</label>
-                      <Input 
+                      <label className="text-sm font-medium mb-2 block">
+                        Email
+                      </label>
+                      <Input
                         type="email"
                         placeholder="your.email@example.com"
                         className="bg-background/50 border-border"
                       />
                     </div>
                   </div>
-                  
+
                   <div>
-                    <label className="text-sm font-medium mb-2 block">Subject</label>
-                    <Input 
+                    <label className="text-sm font-medium mb-2 block">
+                      Subject
+                    </label>
+                    <Input
                       placeholder="Project collaboration, job opportunity, etc."
                       className="bg-background/50 border-border"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="text-sm font-medium mb-2 block">Message</label>
-                    <Textarea 
+                    <label className="text-sm font-medium mb-2 block">
+                      Message
+                    </label>
+                    <Textarea
                       placeholder="Tell me about your project or how I can help you..."
                       className="min-h-[120px] bg-background/50 border-border resize-none"
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    size="lg" 
+
+                  <Button
+                    type="submit"
+                    size="lg"
                     className="w-full hover-glow bg-primary hover:bg-primary/90"
                   >
                     <Send className="h-4 w-4 mr-2" />
@@ -145,7 +158,9 @@ const ContactSection = () => {
             {/* Contact Information */}
             <Card className="glass-card">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">Contact Info</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">
+                  Contact Info
+                </h3>
                 <div className="space-y-4">
                   {contactInfo.map((info) => (
                     <motion.div
@@ -157,9 +172,11 @@ const ContactSection = () => {
                         <info.icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">{info.label}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {info.label}
+                        </p>
                         {info.link ? (
-                          <a 
+                          <a
                             href={info.link}
                             className="font-medium hover:text-primary transition-colors"
                           >
@@ -178,7 +195,9 @@ const ContactSection = () => {
             {/* Social Links */}
             <Card className="glass-card">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">Connect With Me</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">
+                  Connect With Me
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -194,10 +213,14 @@ const ContactSection = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <social.icon className={`h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors ${social.color}`} />
+                      <social.icon
+                        className={`h-6 w-6 text-muted-foreground group-hover:text-primary transition-colors ${social.color}`}
+                      />
                       <div>
                         <p className="font-medium text-sm">{social.label}</p>
-                        <p className="text-xs text-muted-foreground">Follow me</p>
+                        <p className="text-xs text-muted-foreground">
+                          Follow me
+                        </p>
                       </div>
                     </motion.a>
                   ))}

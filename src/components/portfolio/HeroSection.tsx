@@ -3,17 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Github, FileText, Mail } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 
+// Ensure your PDF is in the `public` folder: /public/Venugopal_resume_2025.pdf
+
 const HeroSection = () => {
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/Venugopal_resume_2025.pdf"; // public folder path
+    link.download = "Venugopal_resume_2025.pdf";
+    link.click();
+  };
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBackground})` }}
       >
         <div className="absolute inset-0 hero-gradient opacity-90" />
       </div>
-      {/* Animated Background Elements */}
+
+      {/* Animated Background Particles */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
           <motion.div
@@ -44,7 +57,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl font-bold mb-6 glow-text"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -52,7 +65,7 @@ const HeroSection = () => {
           >
             Venu Raj
           </motion.h1>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,6 +79,7 @@ const HeroSection = () => {
             Building Intelligent Systems & Scalable Solutions
           </motion.div>
 
+          {/* Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,28 +89,37 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="group hover-glow bg-primary hover:bg-primary/90 text-primary-foreground px-8"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <Mail className="mr-2 h-5 w-5" />
               Hire Me
             </Button>
-            
+
             <Button
               size="lg"
               variant="outline"
               className="hover-glow border-primary/50 text-primary hover:bg-primary/10"
+              onClick={handleDownloadResume} // download resume
             >
               <FileText className="mr-2 h-5 w-5" />
               View Resume
             </Button>
-            
+
             <Button
               size="lg"
               variant="ghost"
               className="hover-glow text-primary hover:bg-primary/10"
               asChild
             >
-              <a href="https://github.com/srvenu" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/srvenu"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="mr-2 h-5 w-5" />
                 GitHub
               </a>

@@ -34,7 +34,7 @@ const Portfolio = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            © 2024 Venu Raj. Built with React & Framer Motion. Designed with ❤️
+            © 2025 Venu Raj.❤️
           </motion.p>
         </div>
       </footer>
