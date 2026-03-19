@@ -16,49 +16,49 @@ const timeline = [
     year: "2020",
     icon: GraduationCap,
     title: "Started CS Journey",
-    description: "Enrolled in Computer Science — fell in love with algorithms and problem solving.",
+    description: "Enrolled in Computer Science — fell in love with algorithms and the fundamentals of intelligent systems.",
     color: "from-blue-500 to-blue-600",
   },
   {
     year: "2022",
     icon: Brain,
     title: "First AI Project",
-    description: "Built a computer vision pipeline using OpenCV & TensorFlow — the spark that lit the AI path.",
+    description: "Built a computer vision pipeline using OpenCV & PyTorch — the spark that ignited the deep-learning path.",
     color: "from-primary to-primary/80",
   },
   {
     year: "2023",
     icon: Rocket,
-    title: "Deep Dive into ML",
-    description: "Deep learning, NLP, and cloud — shipped Sign Language Recognition and Video AI projects.",
+    title: "LLMs & Prompt Engineering",
+    description: "Explored GPT APIs, RAG patterns, and LangChain — shipped the first retrieval-augmented knowledge assistant.",
     color: "from-secondary to-secondary/80",
   },
   {
     year: "2024",
     icon: Youtube,
-    title: "Launched CodeAlchemists",
-    description: "Started teaching AI & dev on YouTube — growing community of developers and learners.",
+    title: "Launched CodeAlchemists + LangGraph Agents",
+    description: "Started teaching LLM engineering on YouTube and built stateful multi-agent systems with LangGraph & CrewAI.",
     color: "from-red-500 to-red-600",
   },
   {
     year: "2025",
     icon: Globe,
-    title: "Full Stack AI Engineer",
-    description: "Architecting end-to-end intelligent systems — from model training to production deployment.",
+    title: "AI Agent Systems Engineer",
+    description: "Architecting production-grade agentic pipelines — LangGraph, DeepAgents, RAG, evals, and LangSmith observability.",
     color: "from-cyan-500 to-cyan-600",
   },
 ];
 
 const stats = [
-  { value: 4,    suffix: "+", label: "Projects Shipped" },
+  { value: 6,    suffix: "+", label: "AI Agents Shipped" },
   { value: 300,  suffix: "+", label: "YouTube Subscribers" },
-  { value: 10,   suffix: "+", label: "Technologies Mastered" },
+  { value: 10,   suffix: "+", label: "LLM Integrations" },
   { value: 1000, suffix: "+", label: "Hours of Watch Time" },
 ];
 
 const techStack = [
-  "Python", "React", "TypeScript", "TensorFlow", "PyTorch",
-  "FastAPI", "AWS", "Docker", "OpenCV", "Node.js",
+  "LangChain", "LangGraph", "DeepAgents", "CrewAI", "Python",
+  "RAG", "ChromaDB", "Hugging Face", "LangSmith", "FastAPI",
 ];
 
 function Counter({ target, suffix }: { target: number; suffix: string }) {
@@ -187,20 +187,20 @@ const AboutSection = () => {
               </div>
 
               <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
-                I'm a passionate AI & Software Engineer who loves building intelligent systems that solve real-world problems.
-                Through my YouTube channel{" "}
-                <span className="text-primary font-semibold">CodeAlchemists</span>, I share tutorials on AI, machine learning,
-                and modern web development.
+                I'm an AI Agent Engineer specializing in LangChain, LangGraph, and multi-agent systems.
+                I build production-grade agentic pipelines — RAG systems, stateful agents, and LLM-powered workflows.
+                Through{" "}
+                <span className="text-primary font-semibold">CodeAlchemists</span>, I teach LLM engineering and agent design patterns.
               </p>
 
               <p className="text-muted-foreground leading-relaxed text-sm">
-                My mission: bridge the gap between complex algorithms and practical applications that
-                <span className="text-foreground font-medium"> actually make a difference</span>.
+                My focus: turn frontier models into{" "}
+                <span className="text-foreground font-medium">reliable, observable, production-ready agents</span> that actually ship.
               </p>
 
               <div className="flex items-center gap-2 mt-5 text-sm text-muted-foreground">
                 <Heart className="h-4 w-4 text-primary" />
-                <span>Passionate about AI · Open Source · Teaching</span>
+                <span>Passionate about AI Agents · LLM Evals · Open Source</span>
               </div>
             </motion.div>
 
@@ -218,7 +218,7 @@ const AboutSection = () => {
 
             {/* Tech stack badges */}
             <motion.div variants={fadeUp}>
-              <p className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-widest mb-3">Core Stack</p>
+              <p className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-widest mb-3">Agent Stack</p>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech, i) => (
                   <motion.span

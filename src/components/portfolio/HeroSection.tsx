@@ -1,20 +1,20 @@
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Github, FileText, Mail, ArrowDown, Sparkles, Code2, Brain, Layers } from "lucide-react";
+import { Github, FileText, Mail, ArrowDown, Sparkles, Network, Brain, GitMerge, Workflow } from "lucide-react";
 
 const roles = [
-  "AI Engineer",
-  "ML Researcher",
-  "Full Stack Developer",
-  "Software Architect",
+  "AI Agent Engineer",
+  "LangChain Developer",
+  "LLM Systems Architect",
+  "Multi-Agent Workflow Designer",
 ];
 
 const floatingIcons = [
-  { Icon: Brain,  top: "18%", left: "8%",  delay: 0 },
-  { Icon: Code2,  top: "70%", left: "6%",  delay: 1.2 },
-  { Icon: Layers, top: "20%", left: "88%", delay: 0.6 },
-  { Icon: Github, top: "72%", left: "90%", delay: 1.8 },
+  { Icon: Brain,    top: "18%", left: "8%",  delay: 0 },
+  { Icon: Network,  top: "70%", left: "6%",  delay: 1.2 },
+  { Icon: GitMerge, top: "20%", left: "88%", delay: 0.6 },
+  { Icon: Workflow, top: "72%", left: "90%", delay: 1.8 },
 ];
 
 const HeroSection = () => {
@@ -177,10 +177,12 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.35 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Building intelligent systems that{" "}
-          <span className="text-primary font-semibold">think</span>,{" "}
-          <span className="text-secondary font-semibold">learn</span>, and{" "}
-          <span className="text-cyan-400 font-semibold">scale</span>.
+          Building{" "}
+          <span className="text-primary font-semibold">autonomous agents</span>{" "}
+          and{" "}
+          <span className="text-secondary font-semibold">LLM-powered workflows</span>{" "}
+          with{" "}
+          <span className="text-cyan-400 font-semibold">LangChain &amp; LangGraph</span>.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -243,8 +245,8 @@ const HeroSection = () => {
           className="flex gap-0 justify-center"
         >
           {[
-            { value: "4+",   label: "Projects Shipped" },
-            { value: "10+",  label: "Technologies" },
+            { value: "6+",   label: "AI Agents Shipped" },
+            { value: "10+",  label: "LLM Integrations" },
             { value: "300+", label: "YT Subscribers" },
           ].map((stat, i) => (
             <div

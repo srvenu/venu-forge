@@ -7,69 +7,69 @@ import {
   Radar,
   ResponsiveContainer,
 } from "recharts";
-import { Code2, Brain, Cloud, Globe, Database, Cpu } from "lucide-react";
+import { Network, Brain, Database, GitMerge, Cpu, FlaskConical } from "lucide-react";
 
 const radarData = [
-  { domain: "AI / ML",    score: 92 },
-  { domain: "Frontend",   score: 90 },
-  { domain: "Backend",    score: 85 },
-  { domain: "Cloud",      score: 82 },
-  { domain: "DevOps",     score: 75 },
-  { domain: "Data Eng.",  score: 87 },
+  { domain: "Agent Systems",   score: 94 },
+  { domain: "LLM / Prompting", score: 91 },
+  { domain: "RAG / VectorDB",  score: 88 },
+  { domain: "Python / ML",     score: 95 },
+  { domain: "MLOps",           score: 80 },
+  { domain: "Data Pipelines",  score: 86 },
 ];
 
 const domains = [
   {
-    icon: Brain,
-    title: "AI & Machine Learning",
+    icon: Network,
+    title: "Agent Orchestration",
     color: "from-primary to-primary/60",
     glow: "hsl(217 91% 60% / 0.25)",
-    skills: ["TensorFlow", "PyTorch", "Computer Vision", "NLP", "Deep Learning", "Hugging Face", "OpenCV", "Ray"],
+    skills: ["LangGraph", "LangChain", "CrewAI", "AutoGen", "DeepAgents", "Tool Calling", "ReAct Agents", "Multi-Agent"],
   },
   {
-    icon: Globe,
-    title: "Frontend",
-    color: "from-cyan-500 to-cyan-600/60",
-    glow: "hsl(189 100% 56% / 0.2)",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
-  },
-  {
-    icon: Code2,
-    title: "Backend & APIs",
+    icon: Brain,
+    title: "LLM & Foundation Models",
     color: "from-secondary to-secondary/60",
     glow: "hsl(260 85% 65% / 0.2)",
-    skills: ["Python", "FastAPI", "Node.js", "Flask", "REST APIs", "WebSockets"],
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    color: "from-amber-500 to-amber-600/60",
-    glow: "hsl(43 96% 56% / 0.2)",
-    skills: ["AWS", "Docker", "CI/CD", "GitHub Actions", "EC2", "S3"],
+    skills: ["GPT-4o", "Claude 3.5", "Llama 3", "Gemini", "Mistral", "Groq", "Hugging Face", "Ollama"],
   },
   {
     icon: Database,
-    title: "Data & Databases",
-    color: "from-emerald-500 to-emerald-600/60",
-    glow: "hsl(152 69% 50% / 0.2)",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Pandas", "NumPy"],
+    title: "RAG & Vector Databases",
+    color: "from-cyan-500 to-cyan-600/60",
+    glow: "hsl(189 100% 56% / 0.2)",
+    skills: ["Pinecone", "ChromaDB", "Weaviate", "FAISS", "LlamaIndex", "Embeddings", "Semantic Search", "Reranking"],
+  },
+  {
+    icon: GitMerge,
+    title: "Workflow & Memory",
+    color: "from-amber-500 to-amber-600/60",
+    glow: "hsl(43 96% 56% / 0.2)",
+    skills: ["LangGraph State", "Redis Memory", "Zep", "Mem0", "Tool Use", "Function Calling", "Structured Output"],
   },
   {
     icon: Cpu,
-    title: "Languages",
+    title: "ML & Python Ecosystem",
+    color: "from-emerald-500 to-emerald-600/60",
+    glow: "hsl(152 69% 50% / 0.2)",
+    skills: ["PyTorch", "Transformers", "Pandas", "NumPy", "FastAPI", "Pydantic", "asyncio", "LangServe"],
+  },
+  {
+    icon: FlaskConical,
+    title: "Evals & MLOps",
     color: "from-rose-500 to-rose-600/60",
     glow: "hsl(0 84% 60% / 0.18)",
-    skills: ["Python", "TypeScript", "JavaScript", "Java", "C++", "SQL"],
+    skills: ["LangSmith", "RAGAS", "DeepEval", "Weights & Biases", "MLflow", "Prompt Versioning", "A/B Testing"],
   },
 ];
 
 const proficiencies = [
-  { name: "Python",        pct: 95, color: "from-blue-500  to-blue-600" },
-  { name: "TypeScript",    pct: 90, color: "from-primary   to-secondary" },
-  { name: "Deep Learning", pct: 88, color: "from-secondary to-violet-600" },
-  { name: "React",         pct: 92, color: "from-cyan-500  to-cyan-600" },
-  { name: "AWS",           pct: 82, color: "from-amber-500 to-amber-600" },
-  { name: "Docker",        pct: 79, color: "from-sky-500   to-sky-600" },
+  { name: "Python",          pct: 95, color: "from-blue-500  to-blue-600" },
+  { name: "LangChain",       pct: 93, color: "from-primary   to-secondary" },
+  { name: "LangGraph",       pct: 90, color: "from-secondary to-violet-600" },
+  { name: "RAG Pipelines",   pct: 88, color: "from-cyan-500  to-cyan-600" },
+  { name: "Prompt Eng.",     pct: 91, color: "from-amber-500 to-amber-600" },
+  { name: "Agent Workflows", pct: 87, color: "from-emerald-500 to-emerald-600" },
 ];
 
 const stagger = {
@@ -119,9 +119,9 @@ const SkillsSection = () => {
           viewport={{ once: true, margin: "-80px" }}
           className="mb-20"
         >
-          <motion.p variants={fadeUp} className="section-label mb-3">What I work with</motion.p>
+          <motion.p variants={fadeUp} className="section-label mb-3">AI toolchain & frameworks</motion.p>
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            Skills &{" "}
+            Agent Stack &{" "}
             <span className="gradient-text">Expertise</span>
           </motion.h2>
           <motion.div variants={fadeUp} className="section-divider" />
