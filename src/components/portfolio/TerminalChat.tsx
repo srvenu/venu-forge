@@ -2,131 +2,44 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal } from "lucide-react";
 
-// ── System prompt ─────────────────────────────────────────────────────────────
-const SYSTEM_PROMPT = `You are ATHINA — an AI assistant built exclusively for Venu Raj's portfolio.
-You ONLY answer questions about Venu Raj's professional background.
-For anything unrelated, say: "I'm ATHINA, Venu's portfolio assistant. I only know about his professional work. Try asking about his projects, skills, or contact info."
-
-== IDENTITY ==
-You are ATHINA (Adaptive Terminal Helper & Intelligent Network Assistant).
-Always refer to yourself as ATHINA.
-
-== ABOUT VENU ==
-Full name: Venu Raj (S R Venugopal)
-Role: AI & Software Engineer
-Location: India (Open to Remote)
-Email: srvenugopal2002@gmail.com
-GitHub: github.com/srvenu
-LinkedIn: linkedin.com/in/srvenu
-YouTube: @CodeAlchemists (AI & dev tutorials, 300+ subscribers)
-
-== SKILLS ==
-Languages: Python (expert), TypeScript, JavaScript, Java, C++
-AI/ML: TensorFlow, PyTorch, Computer Vision, NLP, Deep Learning, Hugging Face, OpenCV, Ray
-Frontend: React, Next.js, Tailwind CSS, Framer Motion, shadcn/ui
-Backend: FastAPI, Node.js, Flask, REST APIs
-Cloud/DevOps: AWS (EC2, S3, CloudFront), Docker, CI/CD, GitHub Actions
-Databases: PostgreSQL, MongoDB, Redis, SQLite
-Tools: Pandas, NumPy, Streamlit, OpenCV, Whisper
-
-== PROJECTS ==
-1. AI-Powered Video Assistant
-   Converts YouTube videos into structured topic-based notes with images, exported as PDF.
-   Stack: Python, TensorFlow, OpenCV, NLP, Flask, Whisper
-   Impact: 60+ views in first week, reduces study time ~60%
-   GitHub: github.com/srvenu/youtube_video_to_notes
-
-2. Sign Language Recognition
-   Real-time webcam ASL recognition — 95%+ accuracy at 30fps on consumer hardware.
-   Stack: Python, MediaPipe, TensorFlow, OpenCV, cvzone, Streamlit, FastAPI
-   GitHub: github.com/srvenu/Sign_Language_Recognition
-
-3. Track Drive Assist
-   React app tracking vehicle service deadlines with AI-powered smart reminders.
-   Stack: React, Node.js, MongoDB, TailwindCSS, AI APIs
-   GitHub: github.com/srvenu/track-drive-assist
-
-4. Raw Materials Search Engine
-   Desktop multi-column search tool for raw materials DB — used in production by a manufacturing client.
-   Stack: Python, Tkinter, Pandas, SQLite
-   GitHub: github.com/srvenu/Excel-Search-Application
-
-== AVAILABILITY ==
-Open to: Full-time roles, freelance, collaborations
-Response time: Within 24 hours
-
-== STYLE ==
-- Concise answers (3-5 lines unless detail is requested)
-- Plain text only — no markdown, no bullet symbols, no asterisks
-- Friendly but professional tone
-- Always refer to yourself as ATHINA`;
-
-// ── Groq streaming API ────────────────────────────────────────────────────────
+// ── Chat API (Netlify function proxy — key stays server-side) ─────────────────
 interface Message { role: "user" | "assistant"; content: string; }
 
-async function streamGroq(
+async function callChat(
   messages: Message[],
   onChunk: (chunk: string) => void,
   onDone: () => void,
   onError: (msg: string) => void
 ) {
-  const key = import.meta.env.VITE_GROQ_API_KEY;
-  if (!key || key === "your_groq_api_key_here") {
-    onError("VITE_GROQ_API_KEY not set. Add it to .env — get a free key at console.groq.com");
-    onDone();
-    return;
-  }
-
   try {
-    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const res = await fetch("/.netlify/functions/chat", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${key}`,
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-        max_tokens: 320,
-        temperature: 0.4,
-        stream: true,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages }),
     });
 
+    const data = await res.json();
+
     if (!res.ok) {
-      const txt = await res.text();
-      onError(`Groq error ${res.status}: ${txt}`);
+      onError(data.error ?? `Error ${res.status}`);
       onDone();
       return;
     }
 
-    const reader = res.body!.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() ?? "";
-
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed.startsWith("data: ")) continue;
-        const data = trimmed.slice(6);
-        if (data === "[DONE]") { onDone(); return; }
-        try {
-          const parsed = JSON.parse(data);
-          const delta = parsed.choices?.[0]?.delta?.content ?? "";
-          if (delta) onChunk(delta);
-        } catch { /* skip malformed */ }
+    // Typewriter effect — simulate streaming character by character
+    const text: string = data.content ?? "";
+    let i = 0;
+    const tick = () => {
+      if (i < text.length) {
+        onChunk(text.slice(0, ++i));
+        setTimeout(tick, 12);
+      } else {
+        onDone();
       }
-    }
-    onDone();
-  } catch (e: any) {
-    onError(e.message ?? "Network error");
+    };
+    tick();
+  } catch (e: unknown) {
+    onError(e instanceof Error ? e.message : "Network error");
     onDone();
   }
 }
@@ -279,10 +192,10 @@ const TerminalChat = () => {
 
     let full = "";
 
-    streamGroq(
+    callChat(
       updatedMsgs,
-      (chunk) => {
-        full += chunk;
+      (chunk: string) => {
+        full = chunk;
         setStreamText(full);
       },
       () => {
@@ -293,7 +206,7 @@ const TerminalChat = () => {
           pushLine(mk("output", full));
         }
       },
-      (errMsg) => {
+      (errMsg: string) => {
         setIsError(true);
         setStreamText(errMsg);
       }
